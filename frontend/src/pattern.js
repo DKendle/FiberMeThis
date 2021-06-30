@@ -7,7 +7,9 @@ class Pattern {
         this.yarn = yarn
         this.category_id = category_id
 
+        this.element = document.createElement("li")
+        this.element.id = `pattern-${this.name}`
         Pattern.all.push(this)
-
     }
+
 }

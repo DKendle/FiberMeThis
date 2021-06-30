@@ -5,3 +5,4 @@ const category_url = base_url + "/categories"
 const patternContainer = document.getElementById("pattern-container")
 const formContainer = document.getElementById("form-container")
 const categoryContainer = document.getElementById("category-container")
+

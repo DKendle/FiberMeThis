@@ -14,8 +14,10 @@ class Pattern {
         Pattern.all.push(this)
     }
 
+
+
     //use fetch data to display in pattern container
-    grabPatterns(){
+    static grabPatterns(){
         fetch(pattern_url)
         .then(resp => resp.json())
         .then(patterns => {
@@ -38,5 +40,6 @@ class Pattern {
     addToDOM(){
         patternContainer.append(this.patternHTML())
     }
+
 
 }

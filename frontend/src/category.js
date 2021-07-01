@@ -1,7 +1,7 @@
 class Category {
     //able to access all categories created
     static all = []
-
+    
     constructor(name){
         this.name = name 
 
@@ -12,33 +12,25 @@ class Category {
 
 
     //Index function, pulls all categories
-    static getCategories(){
+    static grabCategories(){
         fetch(category_url)
         .then(resp => resp.json())
         .then(json => {
             for(const category of json){
-                console.log(category)
+                let c = new Category(category.name)
+                c.addCategoryToDOM()
             }
         })
     }
 
     categoryHTML(){
         this.element.innerHTML += `
-        <div>
-            <h3>${this.name}</3>
-        </div>
-    `
+            <h3>${this.name}</3>`
+        return this.element
     }
-    //grab category div
-    //create category container
-    //append new category to container
-    createList(){
-    let li = document.createElement("li")
-    let updatedLi = li.innerHTML = `
-    ${this.name}
-`
-    categoryContainer.append(updatedLi)
     
+    addCategoryToDOM(){
+        categoryList.append(this.categoryHTML())
     }
 
 }

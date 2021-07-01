@@ -1,0 +1,34 @@
+h1 {
+    font-family: monospace;
+    text-shadow: 2px 2px 1px white;
+    color: black;
+    text-align:center
+}
+h3{
+    font-family: monospace;
+    text-shadow: 2px 2px 1px white;
+}
+p {
+
+    font-family: monospace;
+    text-shadow: 2px 2px 1px ;
+}
+
+body {
+background: hsla(332, 53%, 82%, 1);
+background: linear-gradient(90deg, hsla(332, 53%, 82%, 1) 0%, hsla(176, 57%, 89%, 1) 100%);
+background: -moz-linear-gradient(90deg, hsla(332, 53%, 82%, 1) 0%, hsla(176, 57%, 89%, 1) 100%);
+background: -webkit-linear-gradient(90deg, hsla(332, 53%, 82%, 1) 0%, hsla(176, 57%, 89%, 1) 100%);
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#E9B7CE", endColorstr="#D3F3F1", GradientType=1 );
+}
+
+li {
+    margin: auto;
+    text-align: center;
+    height: fit-content;
+    width: 10%;
+    padding: 2%;
+    border: 1px solid black;
+    border-radius: 12px;
+    border-spacing: 2px 2px 2px 2px;
+}

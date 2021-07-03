@@ -28,7 +28,14 @@ li {
     height: fit-content;
     width: 10%;
     padding: 2%;
-    border: 1px solid black;
+    border: 2px solid black;
     border-radius: 12px;
     border-spacing: 2px 2px 2px 2px;
+}
+li:hover{
+    background-color: white;
+}
+
+ul {
+    padding: 2px 2px;
 }

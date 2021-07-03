@@ -3,9 +3,16 @@ const pattern_url = base_url + "/patterns"
 const category_url = base_url + "/categories"
 
 const patternContainer = document.getElementById("pattern-container")
-const formContainer = document.getElementById("form-container")
-const categoryContainer = document.getElementById("category-container")
-const categoryList = document.getElementById("category-list")
-
 
 Category.grabCategories()
+Category.renderForm()
+//Category.categoryForm.addEventListener("submit", submitCategory())
+//Category.categoryList.addEventListener("click", clickCat())
+
+
+function submitCategory(){
+}
+
+function catClick(){
+    debugger
+}

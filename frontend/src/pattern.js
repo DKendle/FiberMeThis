@@ -1,5 +1,5 @@
 class Pattern {
-
+    static all = []
     
     constructor({name, difficulty, description, yarn, category_id}){
         this.name = name
@@ -10,6 +10,8 @@ class Pattern {
 
         this.element = document.createElement("li")
         this.element.id = `pattern-${this.name}`
+
+        Pattern.all.push(this)
     }
 
 
@@ -66,4 +68,30 @@ static renderForm(){
         </form>
         `
     }
+
+////////////////Creating the Pattern/////////////
+static createPattern(){
+    const newP = {
+        name: document.getElementById("name").value,
+        difficulty: document.getElementById("difficulty").value,
+        description: document.getElementById("description").value,
+        yarn: document.getElementById("yarn").value,
+        category_id: 1
+    }
+
+    const configObj = {
+        method: "POST",
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newP)
+    }
+
+    fetch(pattern_url, configObj)
+    .then(resp => resp.json())
+    .then(pattern => {
+        const p = new Pattern(pattern)
+        p.appendPattern()
+    })
+}
 }

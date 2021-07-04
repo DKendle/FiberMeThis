@@ -17,7 +17,9 @@ function goToPatternForm(){
     Pattern.renderForm()
 }
 function submitPattern(){
-    debugger
+    event.preventDefault()
+    Pattern.createPattern()
+    event.target.reset()
 }
 
 Pattern.getPatterns()

@@ -9,9 +9,7 @@ h3{
     text-shadow: 2px 2px 1px white;
 }
 p {
-
     font-family: monospace;
-    text-shadow: 2px 2px 1px ;
 }
 
 body {
@@ -38,4 +36,8 @@ li:hover{
 
 ul {
     padding: 2px 2px;
+}
+
+.buttons {
+    color: rgb(56, 5, 5) ;
 }

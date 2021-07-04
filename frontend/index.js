@@ -1,18 +1,20 @@
 const base_url = "http://localhost:3000"
 const pattern_url = base_url + "/patterns"
-const category_url = base_url + "/categories"
 
 const patternContainer = document.getElementById("pattern-container")
+const patternList = document.getElementById("pattern-list")
+const newPatternButton = document.getElementById("new-pattern-button")
 
-Category.grabCategories()
-Category.renderForm()
-//Category.categoryForm.addEventListener("submit", submitCategory())
-//Category.categoryList.addEventListener("click", clickCat())
+const formContainer = document.getElementById("form-container")
 
 
-function submitCategory(){
+newPatternButton.addEventListener("click", goToPatternForm)
+
+function goToPatternForm(){
+    event.preventDefault()
+    Pattern.renderForm()
 }
 
-function catClick(){
-    debugger
-}
+
+Pattern.getPatterns()
+Pattern.renderButton()

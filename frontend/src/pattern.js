@@ -79,7 +79,7 @@ static createPattern(){
         yarn: document.getElementById("yarn").value,
         category_id: document.getElementById("pattern-dropdown").value
     }
-debugger
+
     const configObj = {
         method: "POST",
         headers:{
@@ -93,14 +93,30 @@ debugger
     .then(pattern => {
         const p = new Pattern(pattern)
         p.appendPattern()
-        debugger
     })
 }
 
-//assignCat(){
-// let allCat = Category.all
-// let dropCat = document.getElementById("pattern-dropdown").value
-//  let catValue = allCat.find(category => category.name === dropCat )
-//
-//}
+/////////////////render Delete////////////////
+
+deletePattern(){
+    let deleteObj = {
+       method: "DELETE",
+       headers: {
+           "Content-Type": "application/json"
+       }
+   }
+   fetch(pattern_url + "/1", deleteObj)
+   this.element.remove()
+
+   }
+
+
+    static deleteButton(){
+       deleteButton.innerHTML += `
+       <form id="delete-pattern-button" class="buttons">
+        <button type="submit" value="Delete Pattern">Delete Pattern</button>
+        </form>
+       
+       `
+    }
 }

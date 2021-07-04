@@ -7,14 +7,19 @@ const newPatternButton = document.getElementById("new-pattern-button")
 
 const formContainer = document.getElementById("form-container")
 
-
+////Event Listeners
 newPatternButton.addEventListener("click", goToPatternForm)
+formContainer.addEventListener("submit", submitPattern)
+
 
 function goToPatternForm(){
     event.preventDefault()
     Pattern.renderForm()
 }
-
+function submitPattern(){
+    debugger
+}
 
 Pattern.getPatterns()
 Pattern.renderButton()
+

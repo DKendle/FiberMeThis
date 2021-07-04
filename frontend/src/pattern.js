@@ -53,7 +53,7 @@ static renderForm(){
                 <option value="knitting">Knitting</option>
                 <option value="weaving">Weaving</option>
             </select>
-    <input type="submit" id="submit-form">
+    <input type="submit" id="submit-pattern-form">
     </form>
     `
     }

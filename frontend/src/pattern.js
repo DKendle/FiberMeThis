@@ -7,7 +7,7 @@ class Pattern {
         this.description = description
         this.yarn = yarn
         this.category_id = category_id
-
+        
         this.element = document.createElement("li")
         this.element.id = `pattern-${this.name}`
 
@@ -51,9 +51,10 @@ static renderForm(){
     Description:<br><textarea type="text" id="description"></textarea><br>
     Yarn:<br><input type="text" id="yarn"><br>
     Category:<br><select id="pattern-dropdown" name="pattern-dropdown">
-                <option value="crochet">Crochet</option>
-                <option value="knitting">Knitting</option>
-                <option value="weaving">Weaving</option>
+                <option value="">Choose a Category</option>
+                <option value="1">Crochet</option>
+                <option value="2">Knitting</option>
+                <option value="3">Weaving</option>
             </select>
     <input type="submit" id="submit-pattern-form">
     </form>
@@ -76,9 +77,9 @@ static createPattern(){
         difficulty: document.getElementById("difficulty").value,
         description: document.getElementById("description").value,
         yarn: document.getElementById("yarn").value,
-        category_id: 1
+        category_id: document.getElementById("pattern-dropdown").value
     }
-
+debugger
     const configObj = {
         method: "POST",
         headers:{
@@ -92,6 +93,14 @@ static createPattern(){
     .then(pattern => {
         const p = new Pattern(pattern)
         p.appendPattern()
+        debugger
     })
 }
+
+//assignCat(){
+// let allCat = Category.all
+// let dropCat = document.getElementById("pattern-dropdown").value
+//  let catValue = allCat.find(category => category.name === dropCat )
+//
+//}
 }

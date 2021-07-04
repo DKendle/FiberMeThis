@@ -12,7 +12,6 @@ weaving = Category.create(name: "Weaving")
 
 
 
-
 hat = Pattern.create(name: "Hat", difficulty: 1,description: "A very nice hat for a beginner",yarn: "Bulky",category_id: 1)
 gloves = Pattern.create(name: "Gloves",difficulty: 3,description: "Pretty gloves for fall",yarn: "Fingering",category_id: 1)
 

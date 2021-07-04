@@ -44,11 +44,11 @@ class Pattern {
 static renderForm(){
     formContainer.innerHTML += `
     <form id="new-pattern-form" class="forms">
-    Name:<input type="text" id="name">
-    Difficulty:<input type="Integer" id="difficulty">
-    Description:<textarea type="text" id="description"></textarea>
-    Yarn:<input type="text" id="yarn">
-    Category:<select id="pattern-dropdown" name="pattern-dropdown">
+    Name:<br><input type="text" id="name"><br>
+    Difficulty:<br><input type="Integer" id="difficulty"><br>
+    Description:<br><textarea type="text" id="description"></textarea><br>
+    Yarn:<br><input type="text" id="yarn"><br>
+    Category:<br><select id="pattern-dropdown" name="pattern-dropdown">
                 <option value="crochet">Crochet</option>
                 <option value="knitting">Knitting</option>
                 <option value="weaving">Weaving</option>
@@ -62,7 +62,7 @@ static renderForm(){
     static renderButton(){
         newPatternButton.innerHTML += `
         <form id="add-pattern-button" class="buttons">
-        <button type="submit" form="new-pattern-form" value="Add a Pattern">Add a Pattern</button>
+        <button type="submit" form="new-pattern-form" value="Add a Pattern" onclick="this.disabled = true">Add a Pattern</button>
         </form>
         `
     }

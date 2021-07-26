@@ -1,7 +1,8 @@
 class Pattern {
     static all = []
-    
-    constructor({name, difficulty, description, yarn, category_id}){
+
+    constructor({id, name, difficulty, description, yarn, category_id}){
+        this.id = id
         this.name = name
         this.difficulty = difficulty
         this.description = description
@@ -9,6 +10,13 @@ class Pattern {
         this.category_id = category_id
         
         this.element = document.createElement("li")
+        
+        this.element.button = document.createElement("button")
+        this.element.button.className = "delete"
+        this.element.button.id = `${this.id}`
+        this.element.button.innerHTML += "Delete Pattern"
+        this.element.appendChild(this.element.button)
+
         this.element.id = `pattern-${this.name}`
 
         Pattern.all.push(this)
@@ -96,27 +104,22 @@ static createPattern(){
     })
 }
 
-/////////////////render Delete////////////////
-
-deletePattern(){
+///////////////Deleting a Pattern///////////////
+static deletePattern(){
     let deleteObj = {
-       method: "DELETE",
-       headers: {
-           "Content-Type": "application/json"
-       }
-   }
-   fetch(pattern_url + "/1", deleteObj)
-   this.element.remove()
-
-   }
-
-
-    static deleteButton(){
-       deleteButton.innerHTML += `
-       <form id="delete-pattern-button" class="buttons">
-        <button type="submit" value="Delete Pattern">Delete Pattern</button>
-        </form>
-       
-       `
+        method: "DELETE",
+        headers:{
+            "Content-Type": "application/json"
+        }
+    }
+    for(const button of deleteButtonsColl){
+        button.addEventListener("click", function(e){
+            e.preventDefault()
+            fetch(pattern_url+`/${this.id}`, deleteObj)
+            this.parentElement.remove()        
+        }
+        
+        )
+        
     }
 }

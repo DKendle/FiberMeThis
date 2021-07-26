@@ -23,14 +23,30 @@ function submitPattern(){
     event.target.reset()
 }
 
-
-
+function deletePattern(){
+    let deleteObj = {
+        method: "DELETE",
+        headers:{
+            "Content-Type": "application/json"
+        }
+    }
+    for(const button of deleteButtonsColl){
+        button.addEventListener("click", function(e){
+            e.preventDefault()
+            fetch(pattern_url+`/${this.id}`, deleteObj)
+            this.parentElement.remove()        
+        }
+        
+        )
+        
+    }
 }
+
 
 
 
 Pattern.getPatterns()
 Pattern.renderButton()
-Pattern.deletePattern()
+this.deletePattern()
 //Pattern.deleteButton()
 //Array.from(deleteButton).forEach(addEventListener("submit", deletePattern))

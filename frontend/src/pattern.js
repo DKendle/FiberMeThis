@@ -104,22 +104,6 @@ static createPattern(){
     })
 }
 
-///////////////Deleting a Pattern///////////////
-static deletePattern(){
-    let deleteObj = {
-        method: "DELETE",
-        headers:{
-            "Content-Type": "application/json"
-        }
-    }
-    for(const button of deleteButtonsColl){
-        button.addEventListener("click", function(e){
-            e.preventDefault()
-            fetch(pattern_url+`/${this.id}`, deleteObj)
-            this.parentElement.remove()        
-        }
-        
-        )
-        
-    }
+
+    
 }

@@ -22,11 +22,6 @@ class Pattern {
     }
 ////////////////////////////////////////////////////////
     
-
-
-
-
-
     static renderPatterns(){
 
         fetch(pattern_url)
@@ -51,7 +46,7 @@ class Pattern {
 
 
     appendPattern(){
-        patternContainer.appendChild(this.patternHTML())
+        patternList.appendChild(this.patternHTML())
     }
 
 ///////////////////////////////////////////////////////////////
@@ -62,10 +57,9 @@ createPatternContainer(){
     deleteButton.className = "delete"
     deleteButton.id = `${this.id}`
     deleteButton.innerText = "Delete Pattern"
-    deleteButton.addEventListener("submit", function(e){deletePattern(e)}) ////create callback function!!!!
+     ////create callback function!!!!
     this.li.appendChild(deleteButton)
     this.appendPattern()
-    
 }
 
     static patternForm(){
@@ -109,19 +103,5 @@ createPatternContainer(){
                 p.createPatternContainer()
         })
     }
-
-    deletePattern(e){
-        e.preventDefault()
-        const deleteObj ={
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }
-        fetch(`${base_url}/${this.id}`, deleteObj)
-        this.li.remove()
-        debugger
-    }
-
 
 }

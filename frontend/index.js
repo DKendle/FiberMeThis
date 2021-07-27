@@ -12,7 +12,22 @@ const formContainer = document.getElementById("form-container")
 
 ////Event Listeners
 formContainer.addEventListener("submit", callCreate)
+patternList.addEventListener("click", e => {
+    e.preventDefault()
+    let target = e.target
+    if(target.className === "delete"){
+        const deleteObj ={
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+           }
+        }
+        fetch(pattern_url+"/"+target.id, deleteObj)
 
+        target.parentElement.remove()
+    }
+}
+    )
 function callCreate(){
     event.preventDefault()
     Pattern.createPattern()

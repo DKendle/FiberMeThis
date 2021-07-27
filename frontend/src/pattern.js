@@ -9,101 +9,119 @@ class Pattern {
         this.yarn = yarn
         this.category_id = category_id
         
-        this.element = document.createElement("li")
+        this.li = document.createElement("li")
         
-        this.element.button = document.createElement("button")
-        this.element.button.className = "delete"
-        this.element.button.id = `${this.id}`
-        this.element.button.innerHTML += "Delete Pattern"
-        this.element.appendChild(this.element.button)
+        //this.element.button = document.createElement("button")
+        //this.element.button.className = "delete"
+        //this.element.button.id = `${this.id}`
+        //this.element.button.innerHTML += "Delete Pattern"
+        //this.element.appendChild(this.element.button)
 
-        this.element.id = `pattern-${this.name}`
 
         Pattern.all.push(this)
     }
+////////////////////////////////////////////////////////
+    
 
 
 
-    static getPatterns(){
+
+
+    static renderPatterns(){
+
         fetch(pattern_url)
         .then(resp => resp.json())
         .then(patterns => {
             for(const pattern of patterns){
-                let p = new Pattern(pattern)
-                p.appendPattern()
+                const p = new Pattern(pattern)
+                    p.createPatternContainer()//append p as a child of the pattern li box
             }
         })
-    }
 
-    appendPattern(){
-        patternContainer.append(this.patternHTML())
     }
 
     patternHTML(){
-        this.element.innerHTML += `
+        this.li.innerHTML += `
         <h3>${this.name}</h3>
         <p>${this.difficulty} / ${this.yarn}</p>
         <p>${this.description}</p>
-        
         `
-        return this.element
+        return this.li
     }
 
-/////////////////Pattern Form/////////////////////////
 
-static renderForm(){
-    formContainer.innerHTML += `
-    <form id="new-pattern-form" class="forms">
-    Name:<br><input type="text" id="name"><br>
-    Difficulty:<br><input type="Integer" id="difficulty"><br>
-    Description:<br><textarea type="text" id="description"></textarea><br>
-    Yarn:<br><input type="text" id="yarn"><br>
-    Category:<br><select id="pattern-dropdown" name="pattern-dropdown">
+    appendPattern(){
+        patternContainer.appendChild(this.patternHTML())
+    }
+
+///////////////////////////////////////////////////////////////
+createPatternContainer(){
+    this.li.id = `pattern-${this.name}`
+
+    let deleteButton = document.createElement("button")
+    deleteButton.className = "delete"
+    deleteButton.id = `${this.id}`
+    deleteButton.innerText = "Delete Pattern"
+    deleteButton.addEventListener("submit", function(e){deletePattern(e)}) ////create callback function!!!!
+    this.li.appendChild(deleteButton)
+    this.appendPattern()
+    
+}
+
+    static patternForm(){
+        formContainer.innerHTML += `
+            <form id="new-pattern-form" class="forms">
+            Name:<br><input type="text" id="name"><br>
+            Difficulty:<br><input type="Integer" id="difficulty"><br>
+            Description:<br><textarea type="text" id="description"></textarea><br>
+            Yarn:<br><input type="text" id="yarn"><br>
+            Category:<br><select id="pattern-dropdown" name="pattern-dropdown" required>
                 <option value="">Choose a Category</option>
                 <option value="1">Crochet</option>
                 <option value="2">Knitting</option>
                 <option value="3">Weaving</option>
             </select>
-    <input type="submit" id="submit-pattern-form">
-    </form>
+                <input type="submit" id="submit-pattern-form">
+            </form>
     `
     }
 
-//////////////////Pattern Button/////////////////
-    static renderButton(){
-        newPatternButton.innerHTML += `
-        <form id="add-pattern-button" class="buttons">
-        <button type="submit" form="new-pattern-form" value="Add a Pattern" onclick="this.disabled = true">Add a Pattern</button>
-        </form>
-        `
+    static createPattern(){
+        const newP = {
+            name: document.getElementById("name").value,
+            difficulty: document.getElementById("difficulty").value,
+            description: document.getElementById("description").value,
+            yarn: document.getElementById("yarn").value,
+            category_id: document.getElementById("pattern-dropdown").value
+        }
+
+        const configObj = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newP)
+        }
+        fetch(pattern_url, configObj)
+        .then(resp => resp.json())
+        .then(pattern => {
+                const p = new Pattern(pattern)
+                p.createPatternContainer()
+        })
     }
 
-////////////////Creating the Pattern/////////////
-static createPattern(){
-    const newP = {
-        name: document.getElementById("name").value,
-        difficulty: document.getElementById("difficulty").value,
-        description: document.getElementById("description").value,
-        yarn: document.getElementById("yarn").value,
-        category_id: document.getElementById("pattern-dropdown").value
+    deletePattern(e){
+        e.preventDefault()
+        const deleteObj ={
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+        fetch(`${base_url}/${this.id}`, deleteObj)
+        this.li.remove()
+        debugger
     }
 
-    const configObj = {
-        method: "POST",
-        headers:{
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(newP)
-    }
 
-    fetch(pattern_url, configObj)
-    .then(resp => resp.json())
-    .then(pattern => {
-        const p = new Pattern(pattern)
-        p.appendPattern()
-    })
-}
-
-
-    
 }

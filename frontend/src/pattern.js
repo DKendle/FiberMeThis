@@ -10,20 +10,10 @@ class Pattern {
         this.category_id = category_id
         
         this.li = document.createElement("li")
-        
-        //this.element.button = document.createElement("button")
-        //this.element.button.className = "delete"
-        //this.element.button.id = `${this.id}`
-        //this.element.button.innerHTML += "Delete Pattern"
-        //this.element.appendChild(this.element.button)
-
-
         Pattern.all.push(this)
     }
 ////////////////////////////////////////////////////////
-    
     static renderPatterns(){
-
         fetch(pattern_url)
         .then(resp => resp.json())
         .then(patterns => {
@@ -32,7 +22,6 @@ class Pattern {
                     p.createPatternContainer()//append p as a child of the pattern li box
             }
         })
-
     }
 
     patternHTML(){
@@ -102,6 +91,14 @@ createPatternContainer(){
                 const p = new Pattern(pattern)
                 p.createPatternContainer()
         })
+        
     }
 
+    static newPatternButtonInner(){
+        newPatternButton.innerHTML += `
+        <form id="add-pattern-button" class="buttons">
+        <button type="submit" form="new-pattern-form" value="Add a Pattern">Add a Pattern</button>
+        </form>
+        `
+    }
 }

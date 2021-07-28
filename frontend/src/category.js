@@ -3,7 +3,7 @@ class Category {
     static all = []
 
     constructor(name){
-        this.name = name 
+        this._name = name 
 
         Category.all.push(this)
     }

@@ -54,9 +54,9 @@ createPatternContainer(){
     static patternForm(){
         formContainer.innerHTML += `
             <form id="new-pattern-form" class="forms">
-            Name:<br><input type="text" id="name"><br>
+            Name:<br><input type="text" id="name"required><br>
             Difficulty:<br><input type="Integer" id="difficulty"><br>
-            Description:<br><textarea type="text" id="description"></textarea><br>
+            Description:<br><textarea type="text" id="description"required></textarea><br>
             Yarn:<br><input type="text" id="yarn"><br>
             Category:<br><select id="pattern-dropdown" name="pattern-dropdown" required>
                 <option value="">Choose a Category</option>
@@ -97,7 +97,7 @@ createPatternContainer(){
     static newPatternButtonInner(){
         newPatternButton.innerHTML += `
         <form id="add-pattern-button" class="buttons">
-        <button type="submit" form="new-pattern-form" value="Add a Pattern">Add a Pattern</button>
+        <button type="submit" form="new-pattern-form" value="Add a Pattern" onclick="this.disabled = true">Add a Pattern</button>
         </form>
         `
     }

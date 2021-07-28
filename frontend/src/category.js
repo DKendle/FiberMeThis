@@ -7,7 +7,6 @@ class Category {
 
         Category.all.push(this)
     }
-
 }
 
 

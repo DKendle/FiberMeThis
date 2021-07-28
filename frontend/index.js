@@ -1,6 +1,6 @@
 const base_url = "http://localhost:3000"
 const pattern_url = base_url + "/patterns"
-
+const category_url = base_url + "/categories"
 
 const patternContainer = document.getElementById("pattern-container")
 const patternList = document.getElementById("pattern-list")
@@ -40,6 +40,7 @@ function callCreate(){
 function renderNewButton(){
     event.preventDefault()
     Pattern.patternForm()
+    
 }
 
 Pattern.renderPatterns()

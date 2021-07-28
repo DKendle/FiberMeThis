@@ -11,6 +11,41 @@ const deleteButtonsColl = document.getElementsByClassName("delete")
 
 const formContainer = document.getElementById("form-container")
 
+const sortContainer = document.getElementById("sort")
+
+function sortButton(){
+    const sortBtn = document.createElement("button")
+    sortBtn.innerText = "Sort"
+    sortContainer.appendChild(sortBtn)
+    
+    sortBtn.addEventListener("click", wipe)
+    return sortBtn
+}
+
+function wipe(){
+fetch(pattern_url)
+        .then(resp => resp.json())
+        .then(patterns => {
+            if(Pattern.all){ ///sort Pattern.all for a-> functionality
+                patterns.sort(function(a,b){
+                    if(a.name > b.name){
+                        return -1
+                    }else if(a.name < b.name){
+                        return 1
+                    }else{
+                        return 0
+                    }
+                })
+                patternList.remove()
+                for(const pattern of patterns){
+                    const p = new Pattern(pattern)
+                        p.createPatternContainer()//append p as a child of the pattern li box
+                }
+            }else{
+
+            }
+            })
+        }
 
 ////Event Listeners////
 formContainer.addEventListener("submit", callCreate)
@@ -31,7 +66,7 @@ patternList.addEventListener("click", e => {
     }
 }
     )
-
+//////////////////////////
 function callCreate(){
     event.preventDefault()
     Pattern.createPattern()
@@ -40,8 +75,9 @@ function callCreate(){
 function renderNewButton(){
     event.preventDefault()
     Pattern.patternForm()
-    
+
 }
 
 Pattern.renderPatterns()
 Pattern.newPatternButtonInner()
+sortButton()
